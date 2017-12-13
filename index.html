@@ -1,0 +1,218 @@
+<!Doctype html>
+<html>
+	<head>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+		<link rel="stylesheet" href="css/Zay.css">
+		<title>Isaiah Martin</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="2/font-awesome/css/font-awesome.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/function.js"></script>
+		
+
+		 <!-- Uploading Image Files -->
+	    <script type="text/javascript">
+			$(function() {
+
+			  // We can attach the `fileselect` event to all file inputs on the page
+			  $(document).on('change', ':file', function() {
+			    var input = $(this),
+			        numFiles = input.get(0).files ? input.get(0).files.length : 1,
+			        label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+			    input.trigger('fileselect', [numFiles, label]);
+			  });
+
+			  // We can watch for our custom `fileselect` event like this
+			  $(document).ready( function() {
+			      $(':file').on('fileselect', function(event, numFiles, label) {
+
+			          var input = $(this).parents('.input-group').find(':text'),
+			              log = numFiles > 1 ? numFiles + ' files selected' : label;
+
+			          if( input.length ) {
+			              input.val(log);
+			          } else {
+			              if( log ) alert(log);
+			          }
+
+			      });
+			  });
+			  
+			});
+		</script>
+
+		<!-- Scroll -->
+		<script type="text/javascript">
+		$(document).ready(function(){
+		$(".scroll").click(function(event){
+         event.preventDefault();
+         //calculate destination place
+         var dest=0;
+         if($(this.hash).offset().top > $(document).height()-$(window).height()){
+              dest=$(document).height()-$(window).height();
+         }else{
+              dest=$(this.hash).offset().top;
+         }
+         //go to destination
+         $('html,body').animate({scrollTop:dest}, 2500,'swing');
+
+     });
+	});
+		</script>
+	
+	</head>
+<body style="background:url(_0Star.jpg);">
+	<div class="container-fluid row">	
+  <nav class="navbar navbar-tabs navbar-inverse" id="nav">
+	 
+	      		<a class="navbar-brand scroll" id="Logo" href="index.html#websites" style="color:white;">
+	      			Isaiah Martin
+	      		</a>
+	    	
+    		<ul class="nav navbar-nav" id="rightnav">
+    			<li><a href="#me" class="btn scroll" style="color:white">Contact Me</a></li>
+    			<!--<li><a href="https://www.facebook.com/isaiah.martin.37266">Facebook</a></li>
+    			<li><a href="/index.html">LinkedIn</a></li>-->
+    		</ul>
+    	</nav>
+    </div>
+
+
+    		
+	<!-- Contact Info -->
+		<div id="ContactUs" class="modalDialog">
+		<div class="col-sm-12">
+		<a href="#close" title="Close" class="close"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
+
+		<h1 class="lead">Contact Us</h1>
+		
+		<form action="/contact.php" method="POST" class="form-horizontal" id="contact">
+		<div class="col-sm-9"> 
+			<h4>Name</h4>
+			<input type="text" class="form-control" name="contactName" placeholder="Name" required/>
+		</div>
+		<div class="col-sm-9">
+			<h4>Contact Info</h4>
+			<input type="text" class="form-control" name="contactInfo" placeholder="Email or Phone Number" required/>
+		</div>
+		<div class="col-sm-9">
+			<br>
+			<h4>Message</h4>
+			<textarea class="form-control" style="color:black;" name="message" rows="4" placeholder="What would you like to tell us?" form="contact" required></textarea>
+		</div>
+		<div class="col-sm-9">
+		<br>
+		<input type="submit" value="Send" style="background-color:black; color:white;" class="btn btn-default btn-lg">
+		<a href="#close" class="btn btn-defualt btn-lg" style="background-color:white; color:black;" role="button">Close</a>
+		</div>
+		</form>
+		</div>	
+		</div>  
+
+
+    <div class="container-fluid row">	
+    <div class="col-sm-12" id="websites">
+    
+    <div class="Spacer">
+    	<h1 class="lead" style="text-align:center; color:white;">Use what you have to give others what they need.</h1>
+    </div>
+
+    <div class="col-sm-6">
+    	<div class="panel panel-default">
+    		<div class="panel-heading">
+    			<h1 class="panel-title">Megaphone</h1>
+    		</div>
+	    	<div class="panel-body width:100%;">
+	    		<a href="http://www.2.seniority.x10host.com"><img src="Megaphone.png" class="img-responsive" style="height:300px; width:100%;"/></a>
+	    	</div>
+        </div>
+    </div>
+
+    <div class="col-sm-6">
+    	<div class="panel panel-default" >
+    		<div class="panel-heading">
+    			<h1 class="panel-title">Seniority</h1>
+    		</div>
+	    	<div class="panel-body width:100%;">
+	    		<a href="http://www.seniority.x10host.com"><img src="Seniority.png" class="img-responsive" style="height:300px; width:100%;"/></a>
+	    	</div>
+        </div>
+    </div>
+
+    <div class="col-sm-6">
+    	<div class="panel panel-default" >
+    		<div class="panel-heading">
+    			<h1 class="panel-title">Stat Keeper</h1>
+    		</div>
+	    	<div class="panel-body width:100%;">
+	    		<a href="/statbox.html"><img src="Statbox.png" class="img-responsive" style="height:300px; width:100%;"/></a>
+	    	</div>
+        </div>
+    </div>
+
+    <div class="col-sm-6">
+    	<div class="panel panel-default" >
+    		<div class="panel-heading">
+    			<h1 class="panel-title">HS Capacity</h1>
+    		</div>
+	    	<div class="panel-body width:100%;">
+	    		<a href="capacity/static/index.html"><img src="Cap.png" class="img-responsive" style="height:300px; width:100%;"/></a>
+	    	</div>
+        </div>
+    </div>
+	
+    <div class="col-sm-6">
+    	<div class="panel panel-default" >
+    		<div class="panel-heading">
+    			<h1 class="panel-title">Wolf Awareness Website</h1>
+    		</div>
+	    	<div class="panel-body width:100%;">
+	    		<a href="/WolfLab/home.html"><img src="WolfLab.png" class="img-responsive" style="height:300px; width:100%;"/></a>
+	    	</div>
+        </div>
+    </div>
+
+
+    <div class="col-sm-6">
+    	<div class="panel panel-default" >
+    		<div class="panel-heading">
+    			<h1 class="panel-title">Introductory PHP + JS Website</h1>
+    		</div>
+	    	<div class="panel-body width:100%;">
+	    		<a href="/home.html"><img src="Intro.png" class="img-responsive" style="height:300px; width:100%;"/></a>
+	    	</div>
+        </div>
+    </div>
+
+</div>
+    
+	
+<div class="col-sm-12 footer" style="background:url(_suited.jpg); color:white; text-align:center;" id="me">
+
+<br>
+	<img class="img-responsive img-circle" src="_napa.jpg" style="width: 20%; height: 20%; display:inline-block;"/><br><br>
+	<a class="btn btn-default btn-lg" role="button" onclick="window.open('https://www.linkedin.com/in/isaiahmartin','popUpWindow','height=600,width=800,left=10,top=10,,scrollbars=yes,menubar=yes'); return false;" >
+			<i class="fa fa-linkedin-square fa-lg"></i>
+		</a>
+		<a class="btn btn-default btn-lg" role="button" onclick="window.open('https://www.facebook.com/freshivyman','popUpWindow','height=600,width=800,left=10,top=10,,scrollbars=yes,menubar=yes'); return false;">
+			<i class="fa fa-facebook-square fa-lg"></i>
+		</a>
+		<a class="btn btn-default btn-lg" role="button" href="mailto:isaiah.t.martin.21@dartmouth.edu">
+			<i class="fa fa-envelope" aria-hidden="true"></i>
+		</a>
+		<a class="btn btn-default btn-lg" role="button" onclick="window.open('https://www.github.com/Isaiah-Martin','popUpWindow','height=600,width=800,left=10,top=10,,scrollbars=yes,menubar=yes'); return false;" >
+
+			<i class="fa fa-github-square fa-lg"></i>
+		</a><br><br>
+		<a class="btn btn-default btn-lg scroll" href="#nav" role="button" >
+			<span class="glyphicon glyphicon-menu-up" aria-hidden="true"></span>
+		</a><br><br>
+	</div>
+</div>
+</div>
+
+</div>
+</div>
+</body>
+</html>

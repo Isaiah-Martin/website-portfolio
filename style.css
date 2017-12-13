@@ -1,0 +1,87 @@
+body, html{
+	width: 100%;
+}
+
+#name{
+	font-size:x-large;
+	font-family: sans-serif;
+	text-align: center;
+	border: thin solid black;
+	border-left: none;
+	font-style: bold;
+}
+.top{
+	background-color: black;
+	color:white;
+	padding: 0.5%;
+	width:80%;
+	left: 0px;
+}
+
+.nav-left{
+    padding: 1%;
+    width: 28%;
+    border:3px thin;
+    background-color: green;
+    font-family: cursive;
+    display: inline-block;
+    vertical-align:top;	
+}
+img{
+	height: 100%;
+	width: 40%;
+	margin: 0 auto;
+}
+.content{
+	display: inline-block;
+	background-color: yellow;
+	height: 100%;
+	width:68%;
+	padding: 1%;
+	border: 3px thin;
+	margin-right:-28%;
+}
+body{
+	margin: auto;
+	background:url(http://newallpaper.net/wp-content/uploads/2015/04/new-york-city-hd-download-wallpaper.jpg);
+}
+
+a{
+	color:white;
+}
+
+a:hover{
+	color:yellow;
+}
+
+.left-pic{	
+	width: 40%;
+	float: left;
+	overflow: hidden;
+}
+.right-content{
+	float: left;
+	width: 50%;
+	overflow: hidden;
+}
+.Algorithms{
+	width: 50%;
+	float: left;
+	overflow: hidden;
+}
+.Output{
+	width: 50%;
+	float: left;
+	overflow: hidden;
+	font-family: cursive;
+}
+#footer{
+	background-color: white;
+	color: black;
+	width:30%;
+}
+
+#game{
+	background: white;
+	border: 3px thin;
+}

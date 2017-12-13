@@ -1,0 +1,275 @@
+<!Doctype html>
+<html>
+<head>
+	<meta charset="utf-8" />
+    <link href="style.css" rel="stylesheet" media="screen">
+	<title>Intro - Isaiah Martin</title>
+</head>
+<boychange>
+	<div class="top">
+	<h1 id = "name">Isaiah Martin</h1>
+	</div>
+	<!-- nav bar on left of page-->
+	<div class="nav-left">
+	<ul>
+		<li><a href="home.html"><p>Html Lab</p></a></li>
+		<li><a href="lab2.php"><p>Php Lab</p></a></li>	
+		<li><a href="js.html"><p>JavaScript Lab</p></a></li>	</ul>
+	</div>
+	<canvas id="game" height ="500px" width="700px">
+		<!-- 
+		The game must incorporate collisions
+        The game must incorporate a point system and must end.
+        The game must use keyboard or mouse events to control something on the screen.
+        The game cannot be trivial, but need not be complex.
+    	-->
+		</canvas>
+
+	<script>
+		//reference to game div
+		var game = document.getElementById("game");
+		//access to content within game div
+		var gamecontext = game.getContext("2d");
+
+
+		//horizontal ball position
+		var x = game.width/2;
+		//vertical ball position
+		var y = game.height-30;
+		//change in horizontal ball position
+		var xchange = 4;
+		//change in vertical ball position
+		var ychange = -4;
+		//radius of ball
+		var radius = 10;
+		//height of paddle
+		var padheight =10;
+		//width of paddle
+		var padwidth = 100;
+		// horizontal location of paddle
+		var Xpad = (game.width - padwidth)/2;
+		//vertical location of paddle
+		var Ypad = game.height - padheight;
+
+		//verifies user click of right key
+		var rightkey = false;
+		//verifies user click of left key
+		var leftkey = false;
+
+		//horizontal collision ball position
+		var collisionx = (game.width/2);
+		//vertical collision ball position
+		var collisiony = 40;
+		//size of collision ball
+		var collisionsize = 50;
+		//rasius of collision ball
+		var collisionradius = 10;
+		//horizontal change of collision ball
+		var collisionxchange = -4;
+		//vertical change of collision ball
+		var collisionychange = 4;
+
+		// game score
+		var score = 0;
+ 
+		//implementation of control detection functions for down and left key
+		document.addEventListener("keydown", downclick, false);
+		document.addEventListener("keyup", upclick, false);
+		//returns true if user downclicks particular key
+		function downclick(key) {
+			//if user downclicks right key
+		    if(key.keyCode == 39) {
+		        rightkey = true;
+		    }
+		    //if user downclicks left key
+		    else if(key.keyCode == 37) {
+		        leftkey = true;
+		    }
+		}
+		//returns true if user upclicks particular key
+		function upclick(key) {
+			//if user upclicks right key
+		    if(key.keyCode == 39) {
+		        rightkey = false;
+		    }
+		    //if user upclicks left key
+		    else if(key.keyCode == 37) {
+		        leftkey = false;
+	    	}
+		}
+		function displayscore(){
+			gamecontext.font = "20px Georgia";
+			gamecontext.fillStyle = "black";
+			gamecontext.fillText("Score: "+score,8,20);
+		}
+		function draw(){
+			//clears trails of previous locations
+		   	gamecontext.clearRect(0, 0, game.width, game.height);
+
+		   	//move
+
+		   	//increment vertical location of ball
+			x+=xchange;
+			//increment horizontal location of ball
+			y+=ychange;
+			//increment vertical location of collision ball
+		   	collisionx+=collisionxchange;
+		   	//increment horizontal location of collision ball
+			collisiony+=collisionychange;
+
+			//check btwn both balls
+
+			//x portion of distance equation
+			var distancex = (x-collisionx)*(x-collisionx);
+			//y portion of distance equation
+		   	var distancey = (y-collisiony)*(y-collisiony);
+		   	//distance between two radii of balls 
+		    //	var distanceradius = (radius+collisionradius)*(radius+collisionradius);
+		    var distanceradius = (collisionsize+radius)*(collisionsize+radius);
+		   	//collision ball detection
+		   	var distance = (distancex + distancey);
+		   	//difference between detection of collision ball and distance of collision ball radii 
+			var difference = distanceradius - distance;
+			//distance ball moves back
+			var distancebackup = difference/distance;
+			//if ball hits or goes into collision ball
+			if(distance <= distanceradius)
+			{
+				x = x+(distancebackup* (-xchange));
+				y = y+(distancebackup* (-ychange));
+			
+				var originalxchange = xchange;
+				var originalychange = ychange;
+				xchange = collisionxchange;
+				ychange = collisionychange;
+				collisionxchange = originalxchange;
+				collisionychange = originalychange;
+			
+			score++;
+			if (collisionsize >= 30)
+			{
+				collisionsize -= 5;
+			}
+			if (padwidth>60)
+					padwidth-=2;
+			else{
+				while (ychange >= -35)
+				{
+					ychange -= 4;
+					collisionychange += 4;
+					/**xchange += 1;
+					collisionxchange += 1; **/
+				}
+
+			}
+			}
+
+			//game view and control boundaries for ball
+
+			//future vertical ball location
+			var futurey = y + ychange;
+			//future horizontal ball location
+			var futurex = x + xchange;
+			//vertical limit of ball
+			var vertical_boundary = game.height-radius;
+			//horizontal limit of ball
+			var horizontal_boundary = game.width-radius;
+			//if future x location exceeds horizontal limit or is less than radius reverse horizontal direction
+			if (futurex > horizontal_boundary || futurex < radius)
+    			xchange = -xchange;
+    		//if future y location is less than radius reverse vertical direction
+	    	if (futurey < radius)
+	    		ychange = -ychange;
+	    	//if future y location exceeds vertical limit
+    		else if (futurey > vertical_boundary)
+    		{
+    			//if ball is vertically in front of pad reverse vertical direction
+	    		if (x > Xpad && x < Xpad + padwidth + radius)
+	    			ychange = -ychange;
+	    		//if ball and pad do not collide and they are at same vertical level end game and start anew
+	    		else
+	    		{
+	    			//if user selects ok restart game
+				    if (confirm('Game Over!\nClick "Cancel" to go back to the home page.\nClick "OK" to try again') == true) {
+				        x=game.width/2;
+	    				y=game.height-30;
+	    				document.location.reload();
+				    } 
+				    //if user selects cancel redirect user to index.html
+				    else {
+				    	x=game.width/2;
+	    				y=game.height-30;
+				        window.location = "index.html";
+				    }
+	    			
+	    		}
+			}
+			// game view boundaries for collision ball 
+			var futurecollisionx = collisionx + collisionxchange;
+			var futurecollisiony = collisiony + collisionychange;
+			var collision_horizontal_boundary = game.width-collisionradius;
+			var collision_vertical_boundary = game.height-collisionradius;
+
+			if(futurecollisionx > collision_horizontal_boundary) 
+			{
+			    collisionx = game.width-radius; 
+			    collisionxchange = -collisionxchange;
+			}
+			if(futurecollisionx < collisionradius)
+			{
+				collisionx = radius;
+				collisionxchange = -collisionxchange;
+			}
+
+			if(futurecollisiony  > game.height/2) {
+			    collisionychange = -collisionychange;
+			}
+			if(futurecollisiony < collisionradius){
+				collisionychange = -collisionychange;
+			}
+			
+			//draw collision ball
+			gamecontext.beginPath();
+			gamecontext.arc(collisionx, collisiony, collisionsize, collisionradius, 0, Math.PI*2);
+			gamecontext.fillStyle = "red";
+			gamecontext.fill();
+			gamecontext.closePath();
+
+			//draw line
+			gamecontext.beginPath();
+			gamecontext.moveTo (0,game.height/2+collisionsize);
+			gamecontext.lineTo(game.width, game.height/2+collisionsize);
+			gamecontext.stroke();
+			gamecontext.closePath();
+
+		   	//sets up ball
+		   	gamecontext.beginPath();
+			gamecontext.arc(x, y, 10, radius, 0, Math.PI*2);
+			gamecontext.fillStyle = "blue";
+			gamecontext.fill();
+			gamecontext.closePath();
+			
+
+			//sets up paddle movement
+			//if paddle is clicked and not in right corner move right
+			if (rightkey && Xpad < (game.width - padwidth))
+				Xpad+=7;
+			//if paddle is clicked and not in left corner move left
+			if (leftkey && Xpad > 0)
+				Xpad-=7;
+			//sets up paddle
+			gamecontext.beginPath();
+			gamecontext.rect(Xpad,Ypad,padwidth,padheight);
+			gamecontext.fillStyle = "green";
+			gamecontext.fill();
+			gamecontext.closePath();
+
+		   	displayscore();
+		}
+		//dictates game pace
+		setInterval(draw, 10);
+		
+	</script>
+</boychange>
+
+</html>

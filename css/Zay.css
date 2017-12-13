@@ -1,0 +1,483 @@
+#intro{
+	opacity: 0.75;
+	text-align: center;
+	vertical-align: center;
+
+}
+#Define{
+    background-image: url("/Definition.jpg");
+    overflow: hidden;
+    position: relative;
+    background-repeat:no-repeat;
+
+    display: inline-block;
+    width:100%;
+    min-height:600px;
+    margin:auto;
+    background-size: cover;
+}
+#intro2Define{
+    margin-top: 10px;
+}
+#nav{
+    margin-top: -1px;
+}
+.intro{
+	height: 100%;
+	width:100%;
+    margin-top: -21px; 
+}
+#leftnav{
+	float: left;
+	overflow: hidden;
+}
+#rightnav{
+	float: right;
+	overflow: hidden;
+}
+
+.homepage-hero-module {
+    border-right: none;
+    border-left: none;
+    position: relative;
+}
+.no-video .video-container video,
+.touch .video-container video {
+    display: none;
+}
+.no-video .video-container .poster,
+.touch .video-container .poster {
+    display: block !important;
+}
+.video-container {
+    position: relative;
+    bottom: 0%;
+    left: 0%;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+.video-container .poster img {
+    width: 100%;
+    bottom: 0;
+    position: absolute;
+}
+.video-container .filter {
+    z-index: 100;
+    position: absolute;
+    background: rgba(0, 0, 0, 0.0);
+    width: 100%;
+}
+.video-container video {
+    position: absolute;
+    z-index: 0;
+    bottom: 0;
+}
+.video-container video.fillWidth {
+    width: 100%;
+}
+.welldiv{
+	position: relative;
+    top:100px;
+    left: 50%;
+    margin-top: 100px;
+    margin-left: -25%;
+    float: left;
+    width: 50%;
+    height: 50%;
+    opacity: 0.85;
+    text-align: center;
+}
+.jumbotron{
+	text-align: center;
+	vertical-align: center;
+	width:100%;
+}
+
+.left{
+    float: left;
+    width: 40%;
+    position: relative;
+}
+.right{
+    float: right;
+    position: relative;
+    width:40%;
+}
+
+.scroll{
+    color: black;
+}
+.customwell{
+    background-color: white;
+    color: black;
+    padding:2%;
+    text-align: center;
+    opacity: 0.8;
+}
+.customwell2{
+    background-color: white;
+    opacity: 0.85;
+    /*padding:2%;
+    text-align: center;
+    opacity: 0.8;*/
+}
+.jumbotron{
+    opacity: 0.9;
+    margin-top: 100px;
+}
+blockquote{
+    border: 0px;
+}
+/* Modal */
+.modalDialog {
+    position: fixed;
+    font-family: Arial, Helvetica, sans-serif;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0,0,0,0.8);
+    z-index: 99999;
+    opacity:0;
+    -webkit-transition: opacity 400ms ease-in;
+    -moz-transition: opacity 400ms ease-in;
+    transition: opacity 400ms ease-in;
+    pointer-events: none;
+}
+
+.modalDialog:target {
+    opacity:1;
+    pointer-events: auto;
+}
+#Team{
+    background-color: black;
+    color: white;
+}
+.modalDialog > div {
+    width: 55%;
+    position: fixed;
+    margin: 10% auto;
+    padding: 5px 20px 13px 20px;
+    border-radius: 10px;
+    background: #696969;
+    background: #696969;
+    background: #696969;
+    background: #696969;
+    color:white;
+}
+/*Edit Profile Modal*/
+.modalDialog2 {
+    position: fixed;
+    font-family: Arial, Helvetica, sans-serif;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0,0,0,0.8);
+    z-index: 99999;
+    opacity:0;
+    -webkit-transition: opacity 400ms ease-in;
+    -moz-transition: opacity 400ms ease-in;
+    transition: opacity 400ms ease-in;
+    pointer-events: none;
+}
+
+.modalDialog2:target {
+    opacity:1;
+    pointer-events: auto;
+}
+
+.modalDialog2 > div {
+    width: 80%;
+    position: fixed;
+    margin: 10% auto;
+    padding: 5px 20px 13px 20px;
+    border-radius: 10px;
+    background: #fff;
+    background: #ffff99;
+    background: #ffff99;
+    background: #ffff99;
+    color:green;
+}
+
+.close {
+    background: #606061;
+    color: #FFFFFF;
+    line-height: 25px;
+    position: absolute;
+    right: -12px;
+    text-align: center;
+    top: -10px;
+    width: 24px;
+    text-decoration: none;
+    font-weight: bold;
+    -webkit-border-radius: 12px;
+    -moz-border-radius: 12px;
+    border-radius: 12px;
+    -moz-box-shadow: 1px 1px 3px #000;
+    -webkit-box-shadow: 1px 1px 3px #000;
+    box-shadow: 1px 1px 3px #000;
+}
+
+.close:hover { 
+    background-color: green; 
+}
+/*
+.join{
+    top: 50%;
+    margin-top: -15%;
+}
+*/
+.tooltip {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted black;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+}
+
+#inverse{
+    background-color: green;
+    color:white;
+    height: 100%;
+    overflow: scroll;
+    margin-top: -25px;
+}
+
+footer{
+    height: 50px;
+    background-color: black;
+    width: 100%;
+    color: white;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+@media only screen and (min-device-width:481px) and (max-device-width:1281px)  {
+    .video-container {
+        position: relative;
+        bottom: 0%;
+        left: 0%;
+        height: 100%;
+        width: 100%;
+        overflow: hidden;
+        background: #000;
+    }
+}
+
+/*
+@media (min-width:320px) { /* smartphones, iPhone, portrait 480x320 phones /}
+@media (min-width:481px) { /* portrait e-readers (Nook/Kindle), smaller tablets @ 600 or @ 640 wide. / }
+@media (min-width:641px) { /* portrait tablets, portrait iPad, landscape e-readers, landscape 800x480 or 854x480 phones / }
+@media (min-width:961px) { /* tablet, landscape iPad, lo-res laptops ands desktops / }
+@media (min-width:1025px) { /* big landscape tablets, laptops, and desktops / }
+@media (min-width:1281px) { /* hi-res laptops and desktops / }
+
+ 
+@media only screen and (min-device-width:320px) and (max-device-width:481px)  {
+    .modalDialog > div {
+    width: 90%;
+    position: relative;
+    margin: 10% auto;
+    padding: 5px 20px 13px 20px;
+    border-radius: 10px;
+    background: #fff;
+    background: -moz-linear-gradient(#fff, #999);
+    background: -webkit-linear-gradient(#fff, #999);
+    background: -o-linear-gradient(#fff, #999);
+    }  
+} */
+
+/* Home page ^ */
+
+.registration{
+    background: url(http://sites.nationalacademies.org/cs/groups/dbassesite/documents/webgraphics/dbasse_168036.jpg);
+    overflow: hidden;
+    position: relative;
+    background-repeat:no-repeat;
+    width:100%;
+    height:100%;
+    margin:auto;
+    background-size: cover;
+}
+
+.welldiv2{
+    position: relative;
+    top:10%;
+    left: 50%;
+    margin-top: 10%;
+    margin-left: -25%;
+    float: left;
+    width: 50%;
+    height: 50%;
+    opacity: 0.75;
+    background-color: #eee;
+    text-align: center;
+}
+.user-image{
+    border: 1px solid black;
+    padding: 0%;
+    background-color: #eee;
+}
+/*
+span.glyphicon.glyphicon-chevron-right {
+    font-size: 20px;
+} */
+
+.status{
+    text-align: center;
+}
+.carousel-inner > .item > img,
+  .carousel-inner > .item > a > img {
+      width: 900px;
+      height: 400px;
+      margin: auto;
+      opacity: 1;
+  }
+.carousel-caption{
+    text-align: center;
+    background-color: green;
+    opacity: 0.75;
+    color:#ffff99;
+}
+.carousel-control{
+    margin-top: -4%;
+    width: 40px;
+}
+.left{
+    margin-left: 4%;
+}
+.right{
+    margin-right: 4%;
+}
+
+/* body{
+    background: url("http://www.planwallpaper.com/static/images/cool_wooden_wall_1920x1200_cool_twitter_backgrounds.jpg");
+    overflow: hidden;
+    position: relative;
+    background-repeat:no-repeat;
+
+    width:100%;
+    height:100%;
+    margin:auto;
+    background-size: cover;
+
+} */
+#inverse2{
+    background-color: green;
+    color:white;
+    height: 100%;
+    overflow: scroll;
+    margin-top: 0.5%;
+}
+body,html{
+    width: 100%;
+    background-size: cover;
+}
+
+.page{
+    background-image: url("http://www.oxfordtoday.ox.ac.uk/sites/files/oxford/styles/ot_full_width/public/media_wysiwyg/stories3_wide.jpg");
+    overflow: hidden;
+    position: relative;
+    background-repeat:no-repeat;
+
+    display: inline-block;
+    width:100%;
+    height:580px;
+    margin:auto;
+    background-size: cover;
+}
+
+.btn-file {
+    position: relative;
+    overflow: hidden;
+}
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
+}
+
+#left{
+    float: left;
+    width:45%;
+}
+#right{
+    float: right;
+    width:45%;
+}/*
+nav{
+
+    background: #ffff99;
+    } */
+.navbar-tabs .navbar-nav > li > a{
+    color:black;
+}
+.navbar-tabs .navbar-nav > li > a:hover{
+    background-color: black;
+    color:white;
+}
+.navbar-tabs{
+    border-color:black;
+    border-style: dashed;
+}
+.navbar-inverse{
+    background-color: black;
+    color:white;
+}
+/* Google */
+.form-control::-webkit-input-placeholder { color: #A9A9A9; }
+/* Mozilla Firefox */
+.form-control:-moz-placeholder { color: #A9A9A9; }
+.form-control::-moz-placeholder { color:#A9A9A9; }
+/* Internet Explorer */
+.form-control:-ms-input-placeholder { color: #A9A9A9; }
+
+.leftSideBar{display:block;}
+.rightSideBar{display:block;}
+
+@media only screen and (max-device-width: 480px) {
+    .homepage-hero-module {
+
+        display: inline-block;
+        /*background: url(Up/Snapshots/Up.jpg);*/
+        background: url(Ideas/Snapshots/Ideas.jpg);
+        margin: auto;
+        height: 100%;
+        background-repeat:no-repeat;
+        background-size: cover;
+        overflow: hidden;
+    }
+    #intro2mission{
+        margin-top: -50px;
+    }
+}
+

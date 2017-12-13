@@ -1,0 +1,372 @@
+<!Doctype html>
+<html>
+<head>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+		<link rel="stylesheet" href="css/wolf.css">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Wolf Lab - Garcia/Martin</title>
+	</head>
+<body>
+	<div class="container-fluid">
+		<div class="row">
+		<nav class="navbar navbar-pills" style="background-color: #003366;">
+	    	<div class="navbar-header">
+	      		<h1 class="lead" id="top">Yellowstone Guardian<span style="color:#eee">.</span></h1>
+	    	</div>
+	    	<ul class="nav navbar-nav" id="rightnav">
+	    		<li role="presentation"><a href="home.html">Home</a></li>
+	    		<li role="presentation" active><a href="#">Game</a><li>
+	    		<li role="presentation"><a href="facts.html">Facts</a></li>
+	    	</ul>
+	    </nav>
+	</div>
+</div>
+	<img id="earth" width="0" height="0" src="earth.png">
+
+
+	<!--Game canvas section-->
+	<canvas id="game" height ="540px" width="1000px" style="float:right; display: inline-block; width:100%; height:540px; margin:auto; overflow: hidden; position:relative; background-size: cover; margin-top: -2%;">
+		</canvas>
+
+
+	<script>
+		//provides controls to game and prepares user for gameplay
+		alert(
+			'In the game, mother earth is producing an excess amount of deer that are over-consuming plants. This over consumption deprives other species of plants which keeps their populations low. \n\nNow that the wolf is instituted in the Yellowstone environment, the wolf will prey upon the deer populations and lower their numbers to a quantity suitable to Yellowstone. The other species that were deprived of plants will thus grow, and the plants that were over-consumed will be able to increase in population as well. \n\nTherefore, the wolf is a keystone species because it regulates and balances a multitude of populations in its environment through the food chain. \n\nAs the wolf you must withhold your status as a keystone species by preying upon deer. Select left and right to deflect pursuing your food. Every deflection counts as it represents a deer being consumed.\n\nEssentially, you are facing whatever mother earth throws right back at you as the deer adapt in such a way that makes deflection more difficult every time. \n\nDo you have what it takes to keep the ecosystem in balance? Select "OK" to begin!');
+		//reference to game div
+		var game = document.getElementById("game");
+		//access to content within game div
+		var gamecontext = game.getContext("2d");
+
+	    var img = document.getElementById("earth");
+
+		function design(){
+			document.getElementById("game").style.backgroundImage="url('http://www.topozone.com/wp-content/uploads/2016/02/yosemite.jpg')";
+		}
+		design();
+
+		//horizontal ball position
+		var x = game.width/2;
+		//vertical ball position
+		var y = game.height-100;
+		//change in horizontal ball position
+		var xchange = 4.2;
+		//change in vertical ball position
+		var ychange = -4.6;
+		//radius of ball
+		var radius = 10;
+		//height of paddle
+		var padheight =28;
+		//width of paddle
+		var padwidth = 100;
+		// horizontal location of paddle
+		var Xpad = ((game.width - padwidth)/2);
+		//vertical location of paddle
+		var Ypad = (game.height - padheight)-padheight;
+
+		//verifies user click of right key
+		var rightkey = false;
+		//verifies user click of left key
+		var leftkey = false;
+
+		//horizontal earth position
+		var earthx = (game.width/2)-30;
+		//vertical earth position
+		var earthy = 40;
+		//size of earth
+		var earthsize = 50;
+		//rasius of earth
+		var earthradius = 10;
+		//horizontal change of earth
+		var earthxchange = -7.2;
+		//vertical change of earth
+		var earthychange = 1;
+
+		var foodsize = 30;
+		// game score
+		var score = 0;
+ 
+		//implementation of control detection functions for down and left key
+		document.addEventListener("keydown", downclick, false);
+		document.addEventListener("keyup", upclick, false);
+		//returns true if user downclicks particular key
+		function downclick(key) {
+			//if user downclicks right key
+		    if(key.keyCode == 39) {
+		        rightkey = true;
+		    }
+		    //if user downclicks left key
+		    else if(key.keyCode == 37) {
+		        leftkey = true;
+		    }
+		}
+		//returns true if user upclicks particular key
+		function upclick(key) {
+			//if user upclicks right key
+		    if(key.keyCode == 39) {
+		        rightkey = false;
+		    }
+		    //if user upclicks left key
+		    else if(key.keyCode == 37) {
+		        leftkey = false;
+	    	}
+		}
+		//displays score
+		function displayscore(){
+			gamecontext.font = "20px Impact";
+			gamecontext.fillStyle = "black";
+			gamecontext.fillText("Score: "+score,15,20);
+		}
+		//dispays title
+		function displaytitle(){
+
+			gamecontext.font = "45px Impact";
+			gamecontext.fillStyle = "yellow";
+			gamecontext.fillText("Yellowstone Guardian",250,100);
+		}
+		//draws game
+		function draw(){
+			//clears trails of previous locations
+		   	gamecontext.clearRect(0, 0, game.width, game.height);
+
+
+		   	//increment vertical location of food
+			x+=xchange;
+			//increment horizontal location of food
+			y+=ychange;
+			//increment vertical location of earth
+		   	earthx+=earthxchange;
+		   	//increment horizontal location of earth
+			earthy+=earthychange;
+
+
+			//Distance Equation!!!
+
+			//x portion of distance equation
+			var distancex = (x-earthx)*(x-earthx);
+			//y portion of distance equation
+		   	var distancey = (y-earthy)*(y-earthy);
+		   	//distance between two radii of balls 
+		    //	var distanceradius = (radius+earthradius)*(radius+earthradius);
+		    var distanceradius = (earthsize+radius)*(earthsize+radius);
+		   	//earth detection
+		   	var distance = (distancex + distancey);
+		   	//difference between detection of earth and distance of food radii 
+			var difference = distanceradius - distance;
+			//distance ball moves back
+			var distancebackup = difference/distance;
+			//if food is consumed (hits or goes into earth)
+			if(distance <= distanceradius)
+			{
+				x = x+(distancebackup* (-xchange));
+				y = y+(distancebackup* (-ychange));
+				
+				var originalxchange = xchange;
+				var originalychange = ychange;
+				xchange = earthxchange;
+				ychange = earthychange;
+				earthxchange = originalxchange;
+				earthychange = originalychange;
+			
+				if (padwidth>60)
+						padwidth-=2;
+				else{
+					while (ychange >= -35)
+					{
+						ychange -= 4;
+						earthychange += 4;
+					}
+					if(xchange>=7)
+					{
+						xchange = -4;
+					}
+
+				}
+			}
+
+			//game view and control boundaries for ball
+			var headsize=radius+10;
+			//future vertical ball location
+			var futurey = y + ychange;
+			//future horizontal ball location
+			var futurex = x + xchange;
+			//vertical limit of ball
+			var vertical_boundary = game.height-radius;
+			//horizontal limit of ball
+			var horizontal_boundary = game.width-radius;
+			//if future x location exceeds horizontal limit or is less than radius reverse horizontal direction
+			if (futurex > horizontal_boundary || futurex < radius)
+    			xchange = -xchange;
+    		//if future y location is less than radius reverse vertical direction
+	    	if (futurey < radius)
+	    		ychange = -ychange;
+	    	//if future y location exceeds vertical limit
+    		else if (futurey > vertical_boundary-padheight)
+    		{
+    			//if ball is vertically in front of pad reverse vertical direction
+	    		if (x > Xpad-headsize-25 && x < Xpad + padwidth+ radius)
+	    		{
+					score++;
+	    			ychange = -ychange;
+	    		}
+	 //if ball and pad do not collide and they are at same vertical level end game and start anew
+	    		else
+	    		{
+	    			//if user selects ok restart game
+				    if (confirm('Game Over!\nClick "Cancel" to go back to the home page.\nClick "OK" to try again') == true) {
+				       /* x=game.width/2;
+	    				y=game.height-30; */
+	    				document.location.reload();
+				    } 
+				    //if user selects cancel redirect user to index.html
+				    else {
+				        window.location = "home.html";
+				    }
+	    			
+	    		}
+			}
+			// game view boundaries for earth 
+			var futureearthx = earthx + earthxchange;
+			var futureearthy = earthy + earthychange;
+			var earth_horizontal_boundary = game.width-earthradius;
+			var earth_vertical_boundary = game.height-earthradius;
+
+			if(futureearthx > earth_horizontal_boundary) 
+			{
+			    earthx = game.width-radius; 
+			    earthxchange = -earthxchange;
+			}
+			if(futureearthx < earthradius)
+			{
+				earthx = radius;
+				earthxchange = -earthxchange;
+			}
+
+			if(futureearthy  > game.height/2-100) {
+			    earthychange = -earthychange;
+			}
+			if(futureearthy < earthradius+30){
+				earthychange = -earthychange;
+			}
+			
+			//draw earth
+			
+			gamecontext.beginPath();
+			gamecontext.arc(earthx, earthy, earthsize, earthradius, 0, Math.PI*2);
+			gamecontext.fillStyle = "white";
+			gamecontext.fill();
+			gamecontext.strokeStyle = "white";
+			gamecontext.stroke();
+
+			//add that pic on the ball
+	    	gamecontext.drawImage(img, earthx-35, earthy-30,70,60);
+
+			gamecontext.closePath();
+			
+
+/*
+			//draw line
+			gamecontext.beginPath();
+			gamecontext.moveTo (0,game.height/2+earthsize);
+			gamecontext.lineTo(game.width, game.height/2+earthsize);
+			gamecontext.strokeStyle="black";
+			gamecontext.stroke();
+			gamecontext.closePath(); */
+
+		   	//sets up ball
+		   	gamecontext.beginPath();
+		   	gamecontext.strokeStyle="black";
+			//gamecontext.arc(x, y, 10, radius, 0, Math.PI*2);
+			gamecontext.rect(x,y,foodsize,radius);
+			gamecontext.fillStyle = "white";
+			gamecontext.fill();
+			gamecontext.closePath();
+
+			
+
+			//sets up paddle movement
+			//if paddle is clicked and not in right corner move right
+			if (rightkey && Xpad < (game.width - padwidth))
+				Xpad+=7;
+			//if paddle is clicked and not in left corner move left
+			if (leftkey && Xpad > (headsize+2.5))
+				Xpad-=7;
+
+			//sets up wolf paddle
+
+
+			//draw body
+
+			gamecontext.beginPath();
+			gamecontext.fillStyle = "#C0C0C0";
+			gamecontext.rect(Xpad,Ypad,padwidth,padheight);
+			//gamecontext.stroke();
+			gamecontext.fill();
+			gamecontext.closePath();
+
+			//draw tail
+			gamecontext.beginPath();
+			gamecontext.arc(Xpad+padwidth,Ypad,15,0,Math.PI*2);
+			//gamecontext.stroke();
+			gamecontext.fill();
+			gamecontext.closePath();
+
+			//draw head
+			gamecontext.beginPath();
+			gamecontext.arc(Xpad, Ypad,headsize,0,Math.PI*2)
+			gamecontext.fillStyle = "#C0C0C0";
+			//gamecontext.stroke();
+		    gamecontext.fill();
+			
+			gamecontext.closePath();
+
+			// Draw the left eye
+			gamecontext.beginPath();
+			gamecontext.fillStyle = "#000000";
+			gamecontext.arc(Xpad+10, Ypad-10, 5, 0, Math.PI*2);
+
+			// Draw the right eye
+			gamecontext.arc(Xpad-10, Ypad-10, 5, 0, Math.PI*2);
+			gamecontext.fill();
+			gamecontext.closePath();
+			
+			/* Draw the mouth 
+            gamecontext.beginPath();
+            gamecontext.arc(Xpad, Ypad, headsize, 1.1 * Math.PI,  1.9 * Math.PI);
+            gamecontext.stroke();
+            gamecontext.closePath(); 
+
+            
+			gamecontext.beginPath();
+			gamecontext.moveTo(Xpad+15, Ypad+5);
+			gamecontext.lineTo(Xpad-15, Ypad+5);
+			gamecontext.stroke();
+			gamecontext.closePath(); */
+
+			gamecontext.beginPath();
+		 	gamecontext.arc(Xpad, Ypad-1, headsize-10, 0, Math.PI, false);
+		  	gamecontext.stroke();
+		  	gamecontext.closePath();
+
+			//draw legs
+			gamecontext.beginPath();
+			gamecontext.fillStyle = "#A9A9A9";
+			gamecontext.rect(Xpad,Ypad+padheight,20,20);
+			//gamecontext.stroke();
+			gamecontext.rect(Xpad+padwidth-20,Ypad+padheight,20,20);
+			//gamecontext.stroke();
+			gamecontext.fill();
+			gamecontext.closePath();
+
+
+			//display score and title
+		   	displayscore();
+		   	displaytitle();
+		}
+		//dictates game pace
+		setInterval(draw, 10);
+		
+	</script>
+</body>
+
+</html>
