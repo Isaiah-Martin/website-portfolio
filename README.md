@@ -1,5 +1,5 @@
 # website-portfolio
-A compilation of personal web projects that I've done since high school! 
+A compilation of personal web projects that I've worked on from high school through college to now! 
 
 The current list includes: 
 * A
